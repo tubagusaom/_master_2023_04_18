@@ -42,6 +42,5 @@ $route['sertifikasi/pembayaran'] = "administrasi_ujk/konfirmasi";
 $route['kontak-us'] = "welcome/kontak";
 $route['pendaftaran'] = "welcome/daftar_ujikom/1";
 
-
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

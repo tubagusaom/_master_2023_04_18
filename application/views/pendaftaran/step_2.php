@@ -1,5 +1,4 @@
 <section>
-
     <div class="inner">
       <div class="wizard-header">
         <h3 class="heading">FR-APL-01. FORMULIR PERMOHONAN SERTIFIKASI</h3>

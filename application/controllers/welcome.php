@@ -166,7 +166,7 @@ class Welcome extends MY_Controller
         $data['marquee'] = $this->artikel_model->marquee();
 
         $data['uri'] = $id;
-        $this->load->view('uji_kompetensi/ujikom', $data);
+        $this->load->view('uji_kompetensi/ujikom', $data); 
     }
 
     function daftar_ujikom($id = "")
@@ -356,6 +356,19 @@ class Welcome extends MY_Controller
         $namafile = $nmdokumen . "-" . time() . "-lspitk_";
         $fileupload = $this->upload_jawaban('file', $namafile);
         echo $fileupload;
+    }
+
+    function delete_ajax($nmdokumen){
+
+        $filepath = "repo/asesi/$nmdokumen";
+
+        // var_dump($filepath); die();
+        
+        if (is_file($filepath))
+        {
+            unlink($filepath);
+        }
+
     }
 
     function uji_kompetensi_save()

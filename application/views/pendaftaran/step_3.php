@@ -1,3 +1,42 @@
+<style>
+  .form-upload-tb {
+    padding: 10px;
+    /* height: 150px; */
+  }
+  .form-link-tb {
+    display: block;
+    width: 100px;
+    /* height: 150px; */
+    /* color: #555; */
+    /* background-color: #eee; */
+    background-image: none;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+    padding: 5px 98px 5px 5px;
+    text-decoration: none!important;
+
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  }
+  .form-images-tb {
+    width: 80px;
+  }
+  .form-link-delete {
+    color:red;
+    position: absolute;
+    top: 7px;
+    left: 94px;
+    text-decoration: none!important;
+
+    padding: 5px;
+    cursor: pointer;
+  }
+</style>
+
+
 <section>
   <div class="inner">
 
@@ -24,7 +63,8 @@
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>Pasfoto (4x6) <b class="harus_diisi">*</b></legend>
-          <input type="file" id="file_bukti_pendukung" accept="image/*" required>
+          <input type="file" id="pasfoto" accept="image/*" required>
+          <div id="dpasfoto"></div>
         </fieldset>
       </div>
     </div>
@@ -33,7 +73,7 @@
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>Identitas Pribadi (KTP/SIM) <b class="harus_diisi">*</b></legend>
-          <input type="file" id="images" accept="image/*" required>
+          <input type="file" id="ktp" accept="image/*" required>
         </fieldset>
       </div>
     </div>
@@ -42,7 +82,7 @@
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>CV (Daftar Riwayat Hidup) <b class="harus_diisi">*</b></legend>
-          <input type="file" id="images" accept="image/*" required>
+          <input type="file" id="cv" accept="image/*" required>
         </fieldset>
       </div>
     </div>
@@ -51,7 +91,7 @@
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>Ijazah <b class="harus_diisi">*</b></legend>
-          <input type="file" id="images" accept="image/*" required>
+          <input type="file" id="ijazah" accept="image/*" required>
         </fieldset>
       </div>
     </div>
@@ -98,3 +138,79 @@
 
   </div>
 </section>
+
+<script>
+  var baseUrl = "<?= base_url(); ?>";
+
+  $("#pasfoto").on('change', function (e) {
+        e.preventDefault();
+        var urlTarget = baseUrl + "welcome/upload_ajax/foto";
+        var f = $(this);
+        var listFiles = f[0].files;
+        var formData = new FormData();
+        formData.append('file', listFiles[0]);
+        $('#myOverlay').show();
+        $('#loadingGIF').show();
+        $.ajax({
+            url: urlTarget,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+               data = JSON.parse(data);
+               if(data.error){
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+                $("#pasfoto").val("");
+                alert(data.error);
+               }else{
+                 
+                var idUpload = data.upload_data.file_name;
+                var acuanId = idUpload.replace(".", "-");
+
+                 var txt0 = "<div id='box-"+acuanId+"' class='col col-md-3 col-sm-4 col-xs-6 form-upload-tb'>";
+                 var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='foto' />";
+                 var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='foto' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
+                 var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'>";
+                 var txt4 = "<img id='img-"+data.upload_data.file_name+"' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='bank-6'></a>";
+                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Foto' datatb='"+data.upload_data.file_name+"' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
+
+                $("#dpasfoto").append(txt0 + txt1 + txt2 + txt3 + txt4 + txt5);
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+               }
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+        return false;
+    });
+
+    function deleteImage(d) {
+      var getImg  = d.getAttribute("datatb");
+      var getId  = "#box-" + getImg;
+      var resId = getId.replace(".", "-");
+      
+      var urlTarget = baseUrl + "welcome/delete_ajax/" + getImg;
+      $('#myOverlay').show();
+      $('#loadingGIF').show();
+
+      $.ajax({
+        type: 'POST',
+        url: urlTarget,
+        // data: data,
+        success: function() {
+          $(resId).remove();
+          $('#myOverlay').hide();
+          $('#loadingGIF').hide();
+        }
+      });
+      return false;
+      
+      // alert(resId);
+
+    };
+    
+</script>

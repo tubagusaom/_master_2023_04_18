@@ -1,4 +1,4 @@
-<div class="col-md-12 formStep3">
+<div class="col-md-12 formStep3"> 
     <fieldset><legend><h3> UPLOAD BUKTI PENDUKUNG</h3>
             <h5>Upload beberapa dokumen yang menunjukan bukti pemenuhan persyaratan dasar sertifikasi yang ditetapkan dalam dokumen skema sertifikasi.</h5></legend></fieldset>
     <div class="col-md-12" id="div_unit_dipilih">
