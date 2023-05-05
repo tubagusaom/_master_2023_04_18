@@ -1,13 +1,17 @@
-
 <section>
   <div class="inner">
     <div class="wizard-header">
-      <h3 class="heading">Set Financial Goals</h3>
-      <p>Please enter your infomation and proceed to the next step so we can build your accounts.</p>
+      <h3 class="heading">FR-APL 02 ASESMEN MANDIRI</h3>
+      <p>Lakukan asesmen mandiri untuk menilai kompetensi Anda pada setiap Kriteria Unjuk Kerja (KUK) dalam Unit Kompetensi sesuai paket skema sertifikasi yang dipilih. Pilih bukti pendukung yang telah Anda unggah sebelumnya, yang tepat dan mendukung terhadap setiap KUK.</p>
     </div>
 
     <div class="form-row">
       <div class="form-holder form-holder-2">
+
+        <div class="table-responsive" id="div_skema_yang_dipilih">
+            <div id="div_inner"></div>
+        </div>
+
         <input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1">
         <label class="plan-icon plan-1-label" for="plan-1">
           <img src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-icon-2.png" alt="pay-1">

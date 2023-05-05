@@ -38,7 +38,6 @@ $route['download-category-lsp'] = "repositori/download_category";
 $route['download-file-lsp/(:any)'] = "repositori/vdownload/$1";
 $route['sertifikasi/pembayaran'] = "administrasi_ujk/konfirmasi";
 
-
 $route['kontak-us'] = "welcome/kontak";
 $route['pendaftaran'] = "welcome/daftar_ujikom/1";
 

@@ -111,6 +111,7 @@
 <script type="text/javascript">
     // $('.collapse').not(':first').collapse(); // Collapse all but the first row on the page.
 
+
     $('#accordion_search_bar').keyup(function(){
         searchTerm = $(this).val();
         console.log(searchTerm);

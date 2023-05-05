@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>Pendaftaran | <?=$aplikasi->singkatan_unit?></title>
@@ -139,7 +138,7 @@
 
 	</div>
 
-	
+
 
 	<!-- jQuery -->
 	<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->

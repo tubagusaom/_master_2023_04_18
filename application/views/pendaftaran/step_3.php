@@ -14,7 +14,6 @@
     border-radius: 5px; */
     padding: 5px 98px 5px 5px;
     text-decoration: none!important;
-
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
@@ -37,106 +36,117 @@
   }
 
   #imgUpload {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-border-radius: 5px;
-cursor: pointer;
-transition: 0.3s;
-}
+  #imgUpload:hover {opacity: 0.7;}
 
-#imgUpload:hover {opacity: 0.7;}
+  #myImg2 {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
+  #myImg2:hover {opacity: 0.7;}
 
-#myImg2 {
+  #popOverlay {
+    position:fixed;
+    z-index: 5;
+    top:0px;
+    right: 0px;
+    bottom:0px;
+    width:100%;
+    overflow-y:auto;
+    background: transparent;
+  }
 
-border-radius: 5px;
-cursor: pointer;
-transition: 0.3s;
-}
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    padding: 200px 20px 20px 20px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
 
-#myImg2:hover {opacity: 0.7;}
+  /* Modal Content (image) */
+  .img-content {
+    margin: auto;
+    display: block;
+    width: 40%;
+    max-width: 700px;
+  }
 
-/* The Modal (background) */
-.modal {
-display: none; /* Hidden by default */
-position: fixed; /* Stay in place */
-z-index: 5; /* Sit on top */
-padding-top: 100px; /* Location of the box */
-left: 0;
-top: 0;
-width: 100%; /* Full width */
-height: 100%; /* Full height */
-overflow: auto; /* Enable scroll if needed */
-background-color: rgb(0,0,0); /* Fallback color */
-background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
+  /* Caption of Modal Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
 
-/* Modal Content (image) */
-.img-content {
-margin: auto;
-display: block;
-width: 80%;
-max-width: 700px;
-}
+  /* Add Animation */
+  .img-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
 
-/* Caption of Modal Image */
-#caption {
-margin: auto;
-display: block;
-width: 80%;
-max-width: 700px;
-text-align: center;
-color: #ccc;
-padding: 10px 0;
-height: 150px;
-}
+  @-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+  }
 
-/* Add Animation */
-.img-content, #caption {  
--webkit-animation-name: zoom;
--webkit-animation-duration: 0.6s;
-animation-name: zoom;
-animation-duration: 0.6s;
-}
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
 
-@-webkit-keyframes zoom {
-from {-webkit-transform:scale(0)} 
-to {-webkit-transform:scale(1)}
-}
+  /* The Close Button */
+  .close {
+    position: absolute;
+    z-index: 7;
+    top: 15px;
+    right: 35px;
+    /* color: #f1f1f1; */
+    color: #ccc;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    opacity: .5;
+  }
 
-@keyframes zoom {
-from {transform:scale(0)} 
-to {transform:scale(1)}
-}
+  .close:hover,
+    .close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-/* The Close Button */
-.close {
-position: absolute;
-top: 15px;
-right: 35px;
-color: #f1f1f1;
-font-size: 40px;
-font-weight: bold;
-transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-color: #bbb;
-text-decoration: none;
-cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-.img-content {
-  width: 100%;
-}
-}
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .img-content {
+      width: 100%;
+    }
+  }
 </style>
 
 
 <section>
-  <div class="inner">
+  <div class="inner formStep3">
 
     <div class="wizard-header">
       <h3 class="heading">UPLOAD BUKTI PENDUKUNG</h3>
@@ -172,7 +182,7 @@ cursor: pointer;
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>Identitas Pribadi (KTP/SIM) <b class="harus_diisi">*</b></legend>
-          <input type="file" id="ktp" accept="image/*" required>
+          <input type="file" id="ktp" accept="image/*" >
         </fieldset>
       </div>
     </div>
@@ -181,7 +191,7 @@ cursor: pointer;
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>CV (Daftar Riwayat Hidup) <b class="harus_diisi">*</b></legend>
-          <input type="file" id="cv" accept="image/*" required>
+          <input type="file" id="cv" accept="image/*" >
         </fieldset>
       </div>
     </div>
@@ -190,7 +200,7 @@ cursor: pointer;
       <div class="form-holder form-holder-2">
         <fieldset>
           <legend>Ijazah <b class="harus_diisi">*</b></legend>
-          <input type="file" id="ijazah" accept="image/*" required>
+          <input type="file" id="ijazah" accept="image/*" >
         </fieldset>
       </div>
     </div>
@@ -226,7 +236,7 @@ cursor: pointer;
           <label class="bank-images bank-5-label" for="bank-5">
             <img src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-5.png" alt="bank-5">
           </label>
-          
+
           <input type="radio" class="radio" name="bank-6" id="bank-6" value="bank-6">
           <label class="bank-images bank-6-label" for="bank-6">
             <img src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-6.png" alt="bank-6">
@@ -236,19 +246,48 @@ cursor: pointer;
     </div> -->
 
   </div>
+
+  <div class="jarak-batas"></div>
+
+  <div class="box-arow">
+    <div class="col-xs-12">
+      <div class="col-xs-6">
+        <span class="arrow">
+          <a href="javascript:void(0)">
+            <i class="fa fa-arrow-left"></i>
+            <label class="label-prev">Kembali</label>
+          </a>
+        </span>
+      </div>
+      <div class="col-xs-6">
+        <span class="arrow">
+          <a id="" class="nextBtn3" href="javascript:void(0)">
+            <i class="fa fa-arrow-right"></i>
+            <label class="label-next">Selanjutnya</label>
+          </a>
+          <!-- <button id="selanjutnya-2" type="button" >
+            <i class="fa fa-arrow-right"></i>
+            <label class="label-next">Selanjutnya</label>
+          </button> -->
+        </span>
+      </div>
+    </div>
+  </div>
+
 </section>
 
-<div id="uploadModal" class="modal">
-  <span class="close" onclick="closeModal()">&times;</span>
-  <div></div>
-  <div id="modal-content"></div>
-  <!-- <img class="modal-content" src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-6.png"> -->
 
+<div id="uploadModal" class="modal">
+  <div id="popOverlay"></div>
+  <span id="close" class="close">&times;</span>
+
+  <div id="modal-content"></div>
   <div id="caption"></div>
 </div>
 
 <script>
   var baseUrl = "<?= base_url(); ?>";
+  $('#popOverlay').hide();
 
   $("#pasfoto").on('change', function (e) {
         e.preventDefault();
@@ -273,7 +312,7 @@ cursor: pointer;
                 $("#pasfoto").val("");
                 alert(data.error);
                }else{
-                 
+
                 var idUpload = data.upload_data.file_name;
                 var acuanId = idUpload.replace(".", "-");
 
@@ -281,8 +320,8 @@ cursor: pointer;
                  var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='foto' />";
                  var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='foto' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
                 //  var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'></a>";
-                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
-                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Foto' datatb='"+data.upload_data.file_name+"' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
+                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' inisialjenis='Pasfoto' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
+                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Foto' datatb='"+data.upload_data.file_name+"' datajenis='pasfoto' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
 
                 $("#dpasfoto").append(txt0 + txt1 + txt2 + txt4 + txt5);
                 $('#myOverlay').hide();
@@ -297,10 +336,12 @@ cursor: pointer;
     });
 
     function deleteImage(d) {
+      var getJenis  = d.getAttribute("datajenis");
       var getImg  = d.getAttribute("datatb");
+      var getIdinput  = "#" + getJenis;
       var getId  = "#box-" + getImg;
       var resId = getId.replace(".", "-");
-      
+
       var urlTarget = baseUrl + "welcome/delete_ajax/" + getImg;
       $('#myOverlay').show();
       $('#loadingGIF').show();
@@ -310,20 +351,22 @@ cursor: pointer;
         url: urlTarget,
         // data: data,
         success: function() {
+          $(getIdinput).val('');
           $(resId).remove();
           $('#myOverlay').hide();
           $('#loadingGIF').hide();
         }
       });
       return false;
-      
+
       // alert(resId);
 
     };
 
     function popImage(x) {
-      
+
       var getId  = x.getAttribute("id");
+      var insJenis  = x.getAttribute("inisialjenis");
       var modal = document.getElementById("uploadModal");
 
       // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -332,24 +375,108 @@ cursor: pointer;
 
       var contentModal = "<img class='img-content' src='"+baseUrl+"repo/asesi/"+img+"' alt='tera_byte'>";
 
-      
       $("#modal-content").append(contentModal);
       var modalImg = document.getElementById('modal-content');
       var captionText = document.getElementById("caption");
+      var zIn = "z-index";
 
       // img.onclick = function(){
+        $('#popOverlay').show();
+        $("#formHeader").css("z-index","0");
         modal.style.display = "block";
-        modalImg.src = this.src;
-        captionText.innerHTML = this.alt;
+        // modalImg.src = this.src;
+        captionText.innerHTML = insJenis;
       // }
+
+      // alert($("#formHeader").css("z-index"));
     }
 
-    function closeModal() {
+    var closePop = document.getElementById("close");
+    var closeOverlay = document.getElementById("popOverlay");
+    var modal = document.getElementById("uploadModal");
 
-      var modal = document.getElementById("uploadModal");
-      
+    closePop.onclick = function(){
+      $('#popOverlay').hide();
+      $("#formHeader").css("z-index","2");
       $(".img-content").remove();
       modal.style.display = "none";
     }
+
+    closeOverlay.onclick = function(){
+      $('#popOverlay').hide();
+      $("#formHeader").css("z-index","2");
+      $(".img-content").remove();
+      modal.style.display = "none";
+    }
+
+    NextBtn3 = $('.nextBtn3');
+
+    NextBtn3.click(function (e) {
+      // alert('next 4');
+
+      idfSatu   = document.getElementById("form-total-p-0");
+      idfDua    = document.getElementById("form-total-p-1");
+      idfTiga   = document.getElementById("form-total-p-2");
+      idfEmpat  = document.getElementById("form-total-p-3");
+
+      stepSatu  = document.getElementById("step1");
+      stepDua   = document.getElementById("step2");
+      stepTiga  = document.getElementById("step3");
+      stepEmpat = document.getElementById("step4");
+
+      var cekStep3 = $(".formStep3 input:required");
+      var countDt = 0;
+      $.each(cekStep3, function (key, value) {
+          if (value.value == "") {
+              $("#" + value.id).focus();
+              return false;
+          } else {
+              countDt++;
+          }
+      })
+
+      if (countDt < cekStep3.length) {
+          // alert("Upload File Bukti Pendukung terlebih dahulu !");
+          // return false;
+          Swal.fire({
+            type: 'info',
+            title: 'Oops...',
+            text: 'Upload File Bukti Pendukung terlebih dahulu !'
+          });
+          return false;
+      }else {
+        idfTiga.style.display = "none";
+        idfEmpat.style.display = "block";
+
+        stepTiga.classList.remove("disabled");
+        stepEmpat.classList.add("active2");
+
+        $('#step_langkah').val('4');
+        id = $('#skema_yang_dipilih').val();
+        $.ajax({
+            type: 'post',
+            url: base_url + 'welcome/uji_kompetensi_skema',
+            data: {id: id},
+            cache: false,
+            success: function (data) {
+                $('#div_inner').remove();
+                $('#div_skema_yang_dipilih').append('<div id="div_inner"></div>');
+                $('#div_inner').append(data);
+                create_combo();
+                $('#all_bk').attr('checked', true);
+                $('.value_bk').attr('checked', true);
+                $('#all_k').change(function () {
+                    $('#all_bk').attr('checked', false);
+                    $('.value_k').prop('checked', $(this).prop("checked"));
+                })
+                $('#all_bk').click(function () {
+                    $('#all_k').attr('checked', false);
+                    $('.value_bk').prop('checked', $(this).prop("checked"));
+                })
+            }
+        });
+      }
+
+    })
 
 </script>

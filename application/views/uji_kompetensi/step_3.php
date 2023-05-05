@@ -1,6 +1,6 @@
-<div class="col-md-12 formStep3"> 
+<div class="col-md-12 formStep3">
     <fieldset><legend><h3> UPLOAD BUKTI PENDUKUNG</h3>
-            <h5>Upload beberapa dokumen yang menunjukan bukti pemenuhan persyaratan dasar sertifikasi yang ditetapkan dalam dokumen skema sertifikasi.</h5></legend></fieldset>
+    <h5>Upload beberapa dokumen yang menunjukan bukti pemenuhan persyaratan dasar sertifikasi yang ditetapkan dalam dokumen skema sertifikasi.</h5></legend></fieldset>
     <div class="col-md-12" id="div_unit_dipilih">
         <div id="unit_dipilih"></div>
     </div>
@@ -62,18 +62,18 @@
         <div class="alert alert-info">
             Unggah Persyaratan Wajib (SKK (Surat Keterangan Kerja) dan Sertifikat Pelatihan Kompetensi Penulis Nonfiksi atau Penyunting)
         </div>
-        
+
             <div class="col-md-12 col-xs-12" id="addmore">
                 <button type="button" name="btn_tambah" id="btn_tambah" class="btn btn-info">Tambah Dokumen</button>
             </div>
             <div style="clear: both;margin-bottom: 10px;"></div>
 
             <div class="dokumen_wajib"></div> -->
-        
+
         <div style="clear: both;margin-bottom: 10px;"></div>
         <div class="alert alert-info">Unggah Dokumen Portofolio (Cover Buku Minimal 3)
         </div>
-       
+
             <!-- <div class="col-md-12 col-xs-12" id="addmore">
                 <button type="button" name="btn_addmore" id="btn_addmore" class="btn btn-info">Tambah Dokumen</button>
             </div> -->
@@ -124,7 +124,7 @@
             {name: 'cover_1', value: 'Cover Buku 1'},
             {name: 'cover_2', value: 'Cover Buku 2'},
             {name: 'cover_3', value: 'Cover Buku 3'}, -->
-      
+
 
         <div style="clear: both;margin-bottom: 30px;"></div>
         <br />
@@ -138,7 +138,7 @@
 <script type="text/javascript">
 
     var baseUrl = "<?= base_url(); ?>";
-    
+
     $("#pasfoto").on('change', function (e) {
         e.preventDefault();
         var urlTarget = baseUrl + "welcome/upload_ajax/foto";
@@ -463,7 +463,7 @@
 
         return false;
     });
-    
+
     function dokumen_wajib() {
         var data = [
             {name: '', value: '- Nama Dokumen -'},

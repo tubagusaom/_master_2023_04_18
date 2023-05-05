@@ -1,4 +1,3 @@
-
 <style type="text/css">
 .cnegara{
     display: none;
@@ -370,7 +369,7 @@
         </div>
 
     </div>
-    
+
 
     <script src="<?= base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?= base_url(); ?>assets/plugins/select2-4.0.3/dist/js/select2.full.min.js" type="text/javascript"></script>
