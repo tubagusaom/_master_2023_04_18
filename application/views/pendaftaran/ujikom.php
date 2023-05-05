@@ -103,7 +103,7 @@
 										<span class="step-text">Skema Sertifikasi</span>
 									</h2>
 									<?php
-										$this->load->view('pendaftaran/step_3');
+										$this->load->view('pendaftaran/step_1');
 									?>
 
 			            <h2>
@@ -120,7 +120,7 @@
 			              <span class="step-text">Connect Bank Account</span>
 			            </h2>
 			            <?php
-			              $this->load->view('pendaftaran/step_1');
+			              $this->load->view('pendaftaran/step_3');
 			            ?>
 
 			            <h2>
