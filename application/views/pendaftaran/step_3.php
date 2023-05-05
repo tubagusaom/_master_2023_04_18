@@ -23,6 +23,7 @@
   }
   .form-images-tb {
     width: 80px;
+    cursor: pointer;
   }
   .form-link-delete {
     color:red;
@@ -34,6 +35,103 @@
     padding: 5px;
     cursor: pointer;
   }
+
+  #imgUpload {
+
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+#imgUpload:hover {opacity: 0.7;}
+
+
+#myImg2 {
+
+border-radius: 5px;
+cursor: pointer;
+transition: 0.3s;
+}
+
+#myImg2:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 5; /* Sit on top */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.img-content {
+margin: auto;
+display: block;
+width: 80%;
+max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+margin: auto;
+display: block;
+width: 80%;
+max-width: 700px;
+text-align: center;
+color: #ccc;
+padding: 10px 0;
+height: 150px;
+}
+
+/* Add Animation */
+.img-content, #caption {  
+-webkit-animation-name: zoom;
+-webkit-animation-duration: 0.6s;
+animation-name: zoom;
+animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+from {-webkit-transform:scale(0)} 
+to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+from {transform:scale(0)} 
+to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+position: absolute;
+top: 15px;
+right: 35px;
+color: #f1f1f1;
+font-size: 40px;
+font-weight: bold;
+transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+color: #bbb;
+text-decoration: none;
+cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+.img-content {
+  width: 100%;
+}
+}
 </style>
 
 
@@ -65,6 +163,7 @@
           <legend>Pasfoto (4x6) <b class="harus_diisi">*</b></legend>
           <input type="file" id="pasfoto" accept="image/*" required>
           <div id="dpasfoto"></div>
+          <!-- <img id="imgUpload" class="img-fluid" src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-6.png"> -->
         </fieldset>
       </div>
     </div>
@@ -96,7 +195,7 @@
       </div>
     </div>
 
-    <div class="form-row-total">
+    <!-- <div class="form-row-total">
       <div class="form-row">
         <div class="form-holder form-holder-2 form-holder-3">
           <input type="radio" class="radio" name="bank-1" id="bank-1" value="bank-1" checked>
@@ -134,10 +233,19 @@
           </label>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </section>
+
+<div id="uploadModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div></div>
+  <div id="modal-content"></div>
+  <!-- <img class="modal-content" src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-6.png"> -->
+
+  <div id="caption"></div>
+</div>
 
 <script>
   var baseUrl = "<?= base_url(); ?>";
@@ -172,11 +280,11 @@
                  var txt0 = "<div id='box-"+acuanId+"' class='col col-md-3 col-sm-4 col-xs-6 form-upload-tb'>";
                  var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='foto' />";
                  var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='foto' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
-                 var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'>";
-                 var txt4 = "<img id='img-"+data.upload_data.file_name+"' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='bank-6'></a>";
+                //  var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'></a>";
+                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
                  var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Foto' datatb='"+data.upload_data.file_name+"' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
 
-                $("#dpasfoto").append(txt0 + txt1 + txt2 + txt3 + txt4 + txt5);
+                $("#dpasfoto").append(txt0 + txt1 + txt2 + txt4 + txt5);
                 $('#myOverlay').hide();
                 $('#loadingGIF').hide();
                }
@@ -212,5 +320,36 @@
       // alert(resId);
 
     };
-    
+
+    function popImage(x) {
+      
+      var getId  = x.getAttribute("id");
+      var modal = document.getElementById("uploadModal");
+
+      // Get the image and insert it inside the modal - use its "alt" text as a caption
+      var img  = x.getAttribute("dataimg");
+      // var img = document.getElementById("imgUpload");
+
+      var contentModal = "<img class='img-content' src='"+baseUrl+"repo/asesi/"+img+"' alt='tera_byte'>";
+
+      
+      $("#modal-content").append(contentModal);
+      var modalImg = document.getElementById('modal-content');
+      var captionText = document.getElementById("caption");
+
+      // img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+      // }
+    }
+
+    function closeModal() {
+
+      var modal = document.getElementById("uploadModal");
+      
+      $(".img-content").remove();
+      modal.style.display = "none";
+    }
+
 </script>
