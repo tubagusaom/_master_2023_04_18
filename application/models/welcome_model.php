@@ -70,16 +70,52 @@ Class Welcome_model extends MY_Model {
     }
 
     function data_jadwal($id_tuk){
-        $bulan_jadwal = date('m') + 1;
-        $tahun_jadwal = date('Y');
+
+      date_default_timezone_set('Asia/Jakarta');
+
+        // $hari_jadwal = date('d');
+        // // $bulan_jadwal = date('m') + 1;
+        // $bulan_jadwal = date('m');
+        // $tahun_jadwal = date('Y');
+        //
+        // $tanggal_jadwal = date('Y-' .$bulan_jadwal. '-' . $hari_jadwal);
+
+        // var_dump($tgl_acuan); die();
+
         //$this->db->from('t_faq');
 //        $this->db->where('tanggal >',date('Y-m-d'));
 
 //        $query = $this->db->get(kode_lsp().'jadual_asesmen');
 //        return $query->result();
-        // $query = $this->db->get_where(kode_lsp().'jadual_asesmen', array('id_tuk' => $id_tuk, 'month(tanggal)' => $bulan_jadwal, 'year(tanggal)' => $tahun_jadwal));
-        $query = $this->db->get_where(kode_lsp().'jadual_asesmen', array('id_tuk' => $id_tuk, 'year(tanggal)' => $tahun_jadwal));
+
+        // $query = $this->db->get_where(
+        //   kode_lsp().'jadual_asesmen',
+        //     array(
+        //       'id_tuk' => $id_tuk,
+        //       'month(tanggal)' => $bulan_jadwal,
+        //       'year(tanggal)' => $tahun_jadwal
+        //     )
+        // );
+
+        // $tgl_acuan = date('Y-m-d', strtotime('+0 month', strtotime( date('Y-m-d') )));
+
+        $datetime_acuan = date('Y-m-d H:i:s');
+
+        // var_dump(count($data)); die();
+
+        $this->db->order_by('tanggal', 'ASC');
+        $query = $this->db->get_where(
+          kode_lsp().'jadual_asesmen',
+            array(
+              "id_tuk" => $id_tuk,
+              "kuota_tersisa >" => 0,
+              "CONCAT_WS(' ',tanggal,endtime) >=" => $datetime_acuan
+            )
+        );
+
+        // $query = $this->db->get_where(kode_lsp().'jadual_asesmen', array('id_tuk' => $id_tuk, 'year(tanggal)' => $tahun_jadwal));
         return $query->result();
+
     }
 
 }

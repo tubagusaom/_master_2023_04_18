@@ -342,7 +342,6 @@
     //   }
     // }
 
-
   })
 
 
@@ -359,7 +358,7 @@
           success: function (data) {
               if(data.length > 0){
                   var html = '';
-                  // html += '<option disabled="disabled" selected="selected">Pilih Jadwal</option>';
+                  html += '<option value="" selected="selected">Pilih Jadwal</option>';
                   var i;
                   for(i=0; i<data.length; i++){
                       html += '<option value='+data[i].id+'>'+data[i].jadual+'</option>';
@@ -372,6 +371,9 @@
                       title: 'Belum ada jadwal di TUK yang dipilih',
                       text: 'Silahkan pilih TUK lainnya!'
                   });
+
+                  html = '<option value=""></option>';
+                  $('#jadwal_id').html(html);
               }
               $('#myOverlay').hide();
               $('#loadingGIF').hide();

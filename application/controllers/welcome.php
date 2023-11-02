@@ -538,6 +538,18 @@ class Welcome extends MY_Controller
                 $this->db->insert($asesi_detail, $data_detail);
             }
 
+            $this->db->from(kode_lsp() . 'jadual_asesmen');
+            $this->db->where('id',$jadwal_id);
+            $query_jadwal = $this->db->get()->row();
+
+            $sisa_kouta = $query_jadwal->kuota_tersisa;
+
+            $datajadwal = array(
+                'kuota_tersisa' => ($sisa_kouta - 1)
+            );
+            $this->db->where('id', $jadwal_id);
+            $this->db->update(kode_lsp() . 'jadual_asesmen', $datajadwal);
+
             $datax['sender_id'] = 1;
             $datax['reciepent_id'] = 1;
             $datax['title'] = 'Pendaftaran Uji Kompetensi';
