@@ -38,6 +38,11 @@ Class CI_auth
 	{
 		return $this->ci->session->userdata('id');
 	}
+
+	public function get_jenis_user()
+	{
+		return $this->ci->session->userdata('jenis_user');
+	}
 	
 	/*
 		Periksa kelompok role, anonymous atau valid user

@@ -1,3 +1,5 @@
+
+
 <div id="dlg" style="display: none;margin: auto;"><div id="dialog-content"></div></div>
 <div class="easyui-layout" data-options="fit:'true'">
     <div data-options="region:'north'" style="height:60px">

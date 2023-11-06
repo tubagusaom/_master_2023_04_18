@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <div class="form-row">
+      <div id="select-jadwal" class="form-row">
         <div class="form-holder form-holder-2">
           <fieldset>
             <legend>Jadwal Uji Kompetensi <b class="harus_diisi">*</b></legend>
@@ -345,6 +345,7 @@
   })
 
 
+  $('#select-jadwal').hide();
   $('#id_tuk').change(function () {
       $('#myOverlay').show();
       $('#loadingGIF').show();
@@ -357,6 +358,7 @@
           dataType: 'json',
           success: function (data) {
               if(data.length > 0){
+                  $('#select-jadwal').show();
                   var html = '';
                   html += '<option value="" selected="selected">Pilih Jadwal</option>';
                   var i;
@@ -365,6 +367,8 @@
                   }
                   $('#jadwal_id').html(html);
               }else{
+                  $('#id_tuk').focus();
+                  $('#select-jadwal').hide();
                   // alert('Belum ada jadwal di TUK yang dipilih. Silahkan pilih TUK lainnya!')
                   Swal.fire({
                       type: 'warning',

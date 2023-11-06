@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Pendaftaran | <?=$aplikasi->singkatan_unit?></title>
@@ -11,53 +12,70 @@
 
 	<!-- Font-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/_tera_byte/form/css/opensans-font.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/_tera_byte/form/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="<?php echo base_url() ?>assets/_tera_byte/form/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
 
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstraps/font-awesome.min.css" type="text/css"/>
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstraps/font-awesome.min.css" type="text/css" />
 
 	<!-- Bootstrap -->
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/vendor/bootstrap.3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="<?php echo base_url() ?>assets/_tera_byte/form/vendor/bootstrap.3.3.4/css/bootstrap.min.css">
 
 	<!-- Main Style Css -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/style.css"/>
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/style.css" />
 
 	<!-- Main Style tera_byte -->
-	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/wizard.css"/>
- 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/accordion.css"/>
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/wizard.css" />
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/_tera_byte/form/css/accordion.css" />
 
-	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet"></link>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet">
+	</link>
 
-<style>
-	#myOverlay{
-        position:fixed;
-        top:0px;
-        bottom:0px;
-        width:100%;
-        overflow-y:auto;
-    }
-    #myOverlay{background:black;opacity:.7;z-index:2;}
-    #loadingGIF{position:fixed;top:40%;left:45%;z-index:3;}
-	#loadingGIF img{width: 100px;}
+	<style>
+		#myOverlay {
+			position: fixed;
+			top: 0px;
+			bottom: 0px;
+			width: 100%;
+			overflow-y: auto;
+		}
 
-	.harus_diisi{
-		color:red;
-		font-weight:bold;
-	}
+		#myOverlay {
+			background: black;
+			opacity: .7;
+			z-index: 2;
+		}
 
-	/* @media screen and (min-width: 80rem) {
+		#loadingGIF {
+			position: fixed;
+			top: 40%;
+			left: 45%;
+			z-index: 3;
+		}
+
+		#loadingGIF img {
+			width: 100px;
+		}
+
+		.harus_diisi {
+			color: red;
+			font-weight: bold;
+		}
+
+		/* @media screen and (min-width: 80rem) {
 
 	} */
-</style>
+	</style>
 
 </head>
 
 <body>
 
-<div id="myOverlay"></div>
-<!-- <div id="loadingGIF"><img src="<?=base_url()?>assets/_tera_byte/images/book-gif.gif" /></div> -->
-<div id="loadingGIF">
-	<img src="<?=base_url()?>assets/gif/spin-200.gif" />
-</div>
+	<div id="myOverlay"></div>
+	<!-- <div id="loadingGIF"><img src="<?=base_url()?>assets/_tera_byte/images/book-gif.gif" /></div> -->
+	<div id="loadingGIF">
+		<img src="<?=base_url()?>assets/gif/spin-200.gif" />
+	</div>
 
 	<div class="page-content">
 
@@ -65,18 +83,18 @@
 			<div class="wizard-header-2">
 
 				<ul class="wizard2">
-				  <li class="active2">
-				    <a id="link-1" class="td-none" href="#step1">Skema</a>
-				  </li>
-				  <li id="step2" class="disabled">
-				    <a id="link-2" class="td-none" href="#step2">APL-01</a>
-				  </li>
-				  <li id="step3" class="disabled">
-				    <a id="link-3" class="td-none" href="#step3">Dokumen</a>
-				  </li>
-				  <li id="step4" class="disabled">
-				    <a id="link-4" class="td-none" href="#step4">APL-02</a>
-				  </li>
+					<li class="active2">
+						<a id="link-1" class="td-none" href="#step1">Skema</a>
+					</li>
+					<li id="step2" class="disabled">
+						<a id="link-2" class="td-none" href="#step2">APL-01</a>
+					</li>
+					<li id="step3" class="disabled">
+						<a id="link-3" class="td-none" href="#step3">Dokumen</a>
+					</li>
+					<li id="step4" class="disabled">
+						<a id="link-4" class="td-none" href="#step4">APL-02</a>
+					</li>
 				</ul>
 
 				<!-- <div class="wizard2">
@@ -90,48 +108,49 @@
 
 		<div class="form-v1-content">
 			<div class="wizard-form">
-			      <form name="formRegister" id="formRegister" class="form-register" onsubmit="return validateForm()" action="#" method="post">
+				<form name="formRegister" id="formRegister" class="form-register" onsubmit="return validateForm()"
+					action="#" method="post">
 
 					<input type="hidden" name="step_langkah" id="step_langkah" value="<?=$uri?>">
 					<input type="hidden" name="skema_yang_dipilih" id="skema_yang_dipilih">
 
-			        <div id="form-total">
+					<div id="form-total">
 
-									<h2 id="step1">
-										<p class="step-icon"><span>01</span></p>
-										<span class="step-text">Skema Sertifikasi</span>
-									</h2>
-									<?php
+						<h2 id="step1">
+							<p class="step-icon"><span>01</span></p>
+							<span class="step-text">Skema Sertifikasi</span>
+						</h2>
+						<?php
 										$this->load->view('pendaftaran/step_1');
 									?>
 
-			            <h2>
-			              <p class="step-icon"><span>02</span></p>
-			              <span class="step-text">Personal Infomation</span>
-			            </h2>
-			            <?php
+						<h2>
+							<p class="step-icon"><span>02</span></p>
+							<span class="step-text">Personal Infomation</span>
+						</h2>
+						<?php
 			              $this->load->view('pendaftaran/step_2');
 			            ?>
 
 
-			            <h2>
-			              <p class="step-icon"><span>03</span></p>
-			              <span class="step-text">Connect Bank Account</span>
-			            </h2>
-			            <?php
+						<h2>
+							<p class="step-icon"><span>03</span></p>
+							<span class="step-text">Connect Bank Account</span>
+						</h2>
+						<?php
 			              $this->load->view('pendaftaran/step_3');
 			            ?>
 
-			            <h2>
-			              <p class="step-icon"><span>04</span></p>
-			              <span class="step-text">Set Financial Goals</span>
-			            </h2>
-			            <?php
+						<h2>
+							<p class="step-icon"><span>04</span></p>
+							<span class="step-text">Set Financial Goals</span>
+						</h2>
+						<?php
 			              $this->load->view('pendaftaran/step_4');
 			            ?>
 
-			        </div>
-			      </form>
+					</div>
+				</form>
 			</div>
 
 		</div>
@@ -159,9 +178,11 @@
 		var base_url = "<?php echo base_url() ?>";
 
 		$('#myOverlay').hide();
-        $('#loadingGIF').hide();
+		$('#loadingGIF').hide();
 
-		window.onscroll = function() {myFunction()};
+		window.onscroll = function () {
+			myFunction()
+		};
 
 		var header = document.getElementById("formHeader");
 		// var kontenx = document.getElementsByClassName("content");
@@ -170,16 +191,16 @@
 		var sticky = header.offsetTop;
 
 		function myFunction() {
-		  if (window.pageYOffset > sticky) {
-		    header.classList.add("sticky");
+			if (window.pageYOffset > sticky) {
+				header.classList.add("sticky");
 				header.classList.add("shadow1");
 				header.classList.remove("shadow2");
 
-		  } else {
-		    header.classList.remove("sticky");
+			} else {
+				header.classList.remove("sticky");
 				header.classList.remove("shadow1");
 				header.classList.add("shadow2");
-		  }
+			}
 		}
 
 		function pilih_skema(id) {
@@ -188,8 +209,8 @@
 
 			// alert($('#skema_yang_dipilih').val());
 		}
-
 	</script>
 
 </body>
+
 </html>
