@@ -32,7 +32,7 @@ Class CI_menus
 		$this->ci->V_Menu_Model->order_by($this->ci->V_Menu_Model->get_params('_order'));
 		$menus = $this->ci->V_Menu_Model->get_many_by($where);
 		
-		$display = "";
+		$display = ""; 
 		$group_name = "";
 		
 		$menu_name = "";
@@ -53,7 +53,7 @@ Class CI_menus
 				<span class="title"> Beranda <span class="selected"></span></span></a></li>
 			';
 
-			// $actv = '';
+			$actv = '';
 			foreach($menus as $menu)
 			{
 
@@ -68,7 +68,7 @@ Class CI_menus
 					// $controller_name = $menu->controller_name;
 					
 					$display .= "<li class=".$actv.">
-						<a href='javascript:void(0)'><i class='clip-".$menu->group_icon."'></i>
+						<a href='javascript:void(0)'><i class='clip-".$menu->icon_name."'></i>
 						<span class='title'>" . $menu->group_name . " <span class='selected'></span></span>
 						<span class='icon-arrow'></span></a>
 					";

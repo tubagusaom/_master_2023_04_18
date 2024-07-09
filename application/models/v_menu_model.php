@@ -21,7 +21,7 @@ class V_Menu_Model extends MY_Model
 			'save_formatter' => 'string', 
 			'width' => 80
 		),
-		'group_icon'	=>	array(
+		'icon_name'	=>	array(
 			'label'	=>	'Icon Group Menu',
 			'rule'	=>	'trim|required|xss_clean',
 			'formatter'	=>	'string',

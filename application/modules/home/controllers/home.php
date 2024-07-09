@@ -32,6 +32,8 @@ class Home extends MY_Controller {
             $query_pesan = "";
             $data_aktivitas = "";
             $perangkat = "";
+            $isbn = "";
+            $tglskrng="";
         } else if ($jenis_user == 1) {
 
             $template_header = 'templates/responsive/header';
@@ -102,10 +104,16 @@ class Home extends MY_Controller {
             $tglskrng="";
         }
         // var_dump($this->menus); die();
-        $this->load->view($template_header, array('aplikasi' => $this->aplikasi,'menus' => $this->menus,  '_css_tag' => array(_Asset_JS_ . 'cleditor/jquery.cleditor', _Asset_CSS_ . 'default', _Asset_CSS_ . 'themes/default/easyui', _Asset_CSS_ . 'themes/icon', _Asset_CSS_ . 'bootstraps/font-awesome.min'), 'query_pesan' => $this->query_pesan, 'query_pesan_unread' => $this->query_pesan_unread, 'rolename' => $this->auth->get_rolename(),'tglskrng' => $tglskrng , 'nama_user' => $this->auth->get_user_data()->nama, '_script_tag' => array(_Asset_JS_ . 'jquery.min', _Asset_JS_ . 'jquery-ui/jquery-ui.min', _Asset_JS_ . 'elfinder/elfinder.min', _Asset_JS_ . 'jquery.easyui.min' )));
+        $this->load->view(
+            $template_header,
+                array('aplikasi' => $this->aplikasi,'menus' => $this->menus,  '_css_tag' => array(_Asset_JS_ . 'cleditor/jquery.cleditor', _Asset_CSS_ . 'default', _Asset_CSS_ . 'themes/default/easyui', _Asset_CSS_ . 'themes/icon', _Asset_CSS_ . 'bootstraps/font-awesome.min'), 'query_pesan' => $this->query_pesan, 'query_pesan_unread' => $this->query_pesan_unread, 'rolename' => $this->auth->get_rolename(),'tglskrng' => $tglskrng , 'nama_user' => $this->auth->get_user_data()->nama, '_script_tag' => array(_Asset_JS_ . 'jquery.min', _Asset_JS_ . 'jquery-ui/jquery-ui.min', _Asset_JS_ . 'elfinder/elfinder.min', _Asset_JS_ . 'jquery.easyui.min' )));
         // if ($template_menu !== '') $this->load->view($template_menu);
-        $this->load->view($template_body, array('aplikasi' => $this->aplikasi, 'unread_message' => $this->unread_message, 'isbn' => $isbn,'perangkat' => $perangkat, 'rolename' => $this->auth->get_rolename(),'tglskrng' => $tglskrng , 'nama_user' => $this->auth->get_user_data()->nama, 'jumlah_sertifikat' => $jumlah_sertifikat, 'jumlah_uji_kompetensi' => $jumlah_uji_kompetensi, 'jumlah_repositori' => $jumlah_repositori, 'data_aktivitas' => $data_aktivitas));
-        $this->load->view($template_bottom, array('aplikasi' => $this->aplikasi, '_bottom_JS_' => array(_Asset_JS_ . 'member/jscript', _Asset_JS_ . 'member/default', _Asset_JS_ . 'easyui.form.extend', _Asset_JS_ . 'jquery.extend', _Asset_JS_ . 'member/serializeObject', _Asset_JS_ . 'jquery.easyui.lang.id', _Asset_JS_ . 'member/ajaxfileupload', _Asset_JS_ . 'cleditor/jquery.cleditor.min')));
+        $this->load->view(
+            $template_body,
+                array('aplikasi' => $this->aplikasi, 'unread_message' => $this->unread_message, 'isbn' => $isbn,'perangkat' => $perangkat, 'rolename' => $this->auth->get_rolename(),'tglskrng' => $tglskrng , 'nama_user' => $this->auth->get_user_data()->nama, 'jumlah_sertifikat' => $jumlah_sertifikat, 'jumlah_uji_kompetensi' => $jumlah_uji_kompetensi, 'jumlah_repositori' => $jumlah_repositori, 'data_aktivitas' => $data_aktivitas));
+        $this->load->view(
+            $template_bottom,
+                array('aplikasi' => $this->aplikasi, '_bottom_JS_' => array(_Asset_JS_ . 'member/jscript', _Asset_JS_ . 'member/default', _Asset_JS_ . 'easyui.form.extend', _Asset_JS_ . 'jquery.extend', _Asset_JS_ . 'member/serializeObject', _Asset_JS_ . 'jquery.easyui.lang.id', _Asset_JS_ . 'member/ajaxfileupload', _Asset_JS_ . 'cleditor/jquery.cleditor.min')));
     }
 
     function about() {
