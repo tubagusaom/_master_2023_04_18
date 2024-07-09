@@ -32,8 +32,8 @@ Class Jadwal_asesmen_model extends MY_Model {
             'rule' => 'trim|xss_clean',
             'formatter' => 'general_date',
             'save_formatter' => 'date',
-            'width' => 100,
-            'align' => 'center',
+            'width' => 200,
+            'align' => 'left',
         ),
         'tanggal_akhir' => array(
             'label' => 'End Date',
