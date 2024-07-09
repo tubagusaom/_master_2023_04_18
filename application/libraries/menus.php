@@ -19,7 +19,7 @@ Class CI_menus
 		$segmen_satu = $this->ci->uri->segment(1);
 
 		$where['role_id'] = array(intval($this->ci->auth->get_role_id()), 2);
-		$this->ci->db->select('group_name, group_icon, count(menu_name) as total');
+		$this->ci->db->select('group_name, count(menu_name) as total');
 		$this->ci->db->group_by('group_name');
 		$this->ci->db->where_in('role_id', $where['role_id']);
 		$query = $this->ci->db->get($this->ci->V_Menu_Model->get_params('_table'));

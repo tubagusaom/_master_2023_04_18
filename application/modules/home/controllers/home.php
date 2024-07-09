@@ -17,7 +17,7 @@ class Home extends MY_Controller {
 
         if ($jenis_user == 2 || $jenis_user == 4) {
 
-            $template_header = 'templates/users/header';
+            $template_header = 'templates/users/header'; 
             // $template_menu = $this->load->view('templates/users/menu');
             $template_menu = 'templates/users/menu';
             $template_body = 'templates/users/body';
