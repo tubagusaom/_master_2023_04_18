@@ -1,4 +1,4 @@
-<?php
+<?php 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -267,6 +267,7 @@ class Welcome extends MY_Controller
                    <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
                    <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
                    <td class="select_bukti">
+                    <select><option>Pilih</option></select>
                    </td>
                    </tr>';
                 } else {
@@ -278,6 +279,7 @@ class Welcome extends MY_Controller
                 <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
                 <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
                 <td class="select_bukti">
+                    <select><option>Pilih</option></select>
                 </td>
                 </tr>';
                 }
@@ -307,6 +309,7 @@ class Welcome extends MY_Controller
             <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
             <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
             <td class="select_bukti">
+                <select><option>Pilih</option></select>
             </td>
             </tr>';
                 $no++;
