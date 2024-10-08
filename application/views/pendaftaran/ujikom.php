@@ -138,7 +138,7 @@
 							<span class="step-text">Connect Bank Account</span>
 						</h2>
 						<?php
-			              $this->load->view('pendaftaran/step_3');
+							$this->load->view('pendaftaran/step_3');
 			            ?>
 
 						<h2>

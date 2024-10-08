@@ -118,7 +118,7 @@ class MY_Controller extends CI_Controller {
         return $result;
     }
 
-    public function upload_allfile($param = "", $filename = "") {
+    public function upload_allfile($param = "", $filename = "") { 
         $configFile['upload_path'] = './repo/asesi/';
         $configFile['allowed_types'] = 'pdf|gif|jpg|png|jpeg|rtf|doc|docx|xls|xlsx|ppt|pptx|bmp|avi|flv|wmv|mp3|mp4';
         //rtf|doc|docx|xls|xlsx|ppt|pptx|pdf|gif|jpg|png|jpeg|bmp|avi|flv|wmv|mp3|mp4

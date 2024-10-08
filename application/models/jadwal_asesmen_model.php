@@ -107,7 +107,6 @@ Class Jadwal_asesmen_model extends MY_Model {
             'formatter' => 'nama_perangkat',
             'save_formatter' => 'string',
             'width' => 150,
-            'hidden' => true,
         ),
         'is_kolektif' => array(
             'label' => 'Kolektif?',

@@ -45,7 +45,7 @@ class Jadwal_asesmen extends MY_Controller {
             $this->jadwal_asesmen_model->limit($row, $offset);
             $order = $this->jadwal_asesmen_model->get_params('_order');
             //$rows = isset($where) ? $this->jadwal_asesmen_model->order_by($order)->get_many_by($where) : $this->jadwal_asesmen_model->order_by($order)->get_all();
-            $rows = $this->jadwal_asesmen_model->set_params($params)->with(array('tuk',));
+            $rows = $this->jadwal_asesmen_model->set_params($params)->with(array('tuk','nama_perangkat'));
             $data['rows'] = $this->jadwal_asesmen_model->get_selected()->data_formatter($rows);
             echo json_encode($data);
         } else {

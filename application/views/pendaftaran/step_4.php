@@ -41,7 +41,38 @@
           <span class="plan-title">Special Plan</span>
           <p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
         </div>
+
+        <div class="jarak-batas"></div>
+
+        <div class="box-arow">
+          <div class="col-xs-12">
+            <!-- <div class="col-xs-6">
+              <span class="arrow">
+                <a href="javascript:void(0)">
+                  <i class="fa fa-arrow-left"></i>
+                  <label class="label-prev">Kembali</label>
+                </a>
+              </span>
+            </div> -->
+            <div class="col-xs-12">
+              <!-- <span class="arrow"> -->
+                <!-- <a id="" class="btn btn-warning btn-block nextBtn2" href="javascript:void(0)">
+                  <label class="label-next" style="cursor:pointer">Selesai dan Kirim</label>
+                </a> -->
+
+                <button type="submit" class="btn btn-warning btn-block">Selesai dan Kirim</button>
+                <!-- <button id="selanjutnya-2" type="button" >
+                  <i class="fa fa-arrow-right"></i>
+                  <label class="label-next">Selanjutnya</label>
+                </button> -->
+              <!-- </span> -->
+            </div>
+          </div>
+        </div>
+        
       </div>
+      
+
     </div>
   </div>
 </section>
