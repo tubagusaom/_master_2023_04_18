@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>Pendaftaran | <?=$aplikasi->singkatan_unit?></title>
@@ -108,8 +107,9 @@
 
 		<div class="form-v1-content">
 			<div class="wizard-form">
-				<form name="formRegister" id="formRegister" class="form-register" onsubmit="return validateForm()"
-					action="#" method="post">
+				<!-- <form name="formRegister" id="formRegister" class="form-register" onsubmit="return validateForm()"
+					action="#" method="post"> -->
+				<form name="formRegister" id="formRegister" class="form-register" role="form" method="post" action="<?php echo base_url() . "welcome/uji_kompetensi_save"; ?>" enctype="multipart/form-data">
 
 					<input type="hidden" name="step_langkah" id="step_langkah" value="<?=$uri?>">
 					<input type="hidden" name="skema_yang_dipilih" id="skema_yang_dipilih">
@@ -121,8 +121,8 @@
 							<span class="step-text">Skema Sertifikasi</span>
 						</h2>
 						<?php
-										$this->load->view('pendaftaran/step_1');
-									?>
+							$this->load->view('pendaftaran/step_1');
+						?>
 
 						<h2>
 							<p class="step-icon"><span>02</span></p>

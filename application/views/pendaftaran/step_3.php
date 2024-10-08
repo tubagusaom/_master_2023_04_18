@@ -181,8 +181,9 @@
     <div class="form-row">
       <div class="form-holder form-holder-2">
         <fieldset>
-          <legend>Identitas Pribadi (KTP/SIM) <b class="harus_diisi">*</b></legend>
+          <legend>Identitas Pribadi (KTP) <b class="harus_diisi">*</b></legend>
           <input type="file" id="ktp" accept="image/*" >
+          <div id="dktp"></div>
         </fieldset>
       </div>
     </div>
@@ -192,6 +193,7 @@
         <fieldset>
           <legend>CV (Daftar Riwayat Hidup) <b class="harus_diisi">*</b></legend>
           <input type="file" id="cv" accept="image/*" >
+          <div id="dcv"></div>
         </fieldset>
       </div>
     </div>
@@ -201,6 +203,7 @@
         <fieldset>
           <legend>Ijazah <b class="harus_diisi">*</b></legend>
           <input type="file" id="ijazah" accept="image/*" >
+          <div id="dijazah"></div>
         </fieldset>
       </div>
     </div>
@@ -335,6 +338,144 @@
         return false;
     });
 
+  $("#ktp").on('change', function (e) {
+        e.preventDefault();
+        var urlTarget = baseUrl + "welcome/upload_ajax/ktp";
+        var f = $(this);
+        var listFiles = f[0].files;
+        var formData = new FormData();
+        formData.append('file', listFiles[0]);
+        $('#myOverlay').show();
+        $('#loadingGIF').show();
+        $.ajax({
+            url: urlTarget,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+               data = JSON.parse(data);
+               if(data.error){
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+                $("#pasfoto").val("");
+                alert(data.error);
+               }else{
+
+                var idUpload = data.upload_data.file_name;
+                var acuanId = idUpload.replace(".", "-");
+
+                 var txt0 = "<div id='box-"+acuanId+"' class='col col-md-3 col-sm-4 col-xs-6 form-upload-tb'>";
+                 var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='ktp' />";
+                 var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='ktp' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
+                //  var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'></a>";
+                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' inisialjenis='Ktp' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
+                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Ktp' datatb='"+data.upload_data.file_name+"' datajenis='ktp' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
+
+                $("#dktp").append(txt0 + txt1 + txt2 + txt4 + txt5);
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+               }
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+        return false;
+    });
+
+  $("#cv").on('change', function (e) {
+        e.preventDefault();
+        var urlTarget = baseUrl + "welcome/upload_ajax/cv";
+        var f = $(this);
+        var listFiles = f[0].files;
+        var formData = new FormData();
+        formData.append('file', listFiles[0]);
+        $('#myOverlay').show();
+        $('#loadingGIF').show();
+        $.ajax({
+            url: urlTarget,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+               data = JSON.parse(data);
+               if(data.error){
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+                $("#pasfoto").val("");
+                alert(data.error);
+               }else{
+
+                var idUpload = data.upload_data.file_name;
+                var acuanId = idUpload.replace(".", "-");
+
+                 var txt0 = "<div id='box-"+acuanId+"' class='col col-md-3 col-sm-4 col-xs-6 form-upload-tb'>";
+                 var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='cv' />";
+                 var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='cv' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
+                //  var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'></a>";
+                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' inisialjenis='Cv' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
+                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Cv' datatb='"+data.upload_data.file_name+"' datajenis='cv' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
+
+                $("#dcv").append(txt0 + txt1 + txt2 + txt4 + txt5);
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+               }
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+        return false;
+    });
+
+  $("#ijazah").on('change', function (e) {
+        e.preventDefault();
+        var urlTarget = baseUrl + "welcome/upload_ajax/ijazah";
+        var f = $(this);
+        var listFiles = f[0].files;
+        var formData = new FormData();
+        formData.append('file', listFiles[0]);
+        $('#myOverlay').show();
+        $('#loadingGIF').show();
+        $.ajax({
+            url: urlTarget,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+               data = JSON.parse(data);
+               if(data.error){
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+                $("#pasfoto").val("");
+                alert(data.error);
+               }else{
+
+                var idUpload = data.upload_data.file_name;
+                var acuanId = idUpload.replace(".", "-");
+
+                 var txt0 = "<div id='box-"+acuanId+"' class='col col-md-3 col-sm-4 col-xs-6 form-upload-tb'>";
+                 var txt1 = "<input id='nd-' type='hidden' name='nama_dokumen[]' class='nama_dokumen' value='ijazah' />";
+                 var txt2 = "<input id='fd-' type='hidden' name='file_data[]' id='ijazah' class='form-control input-sm uploadData' value='" + data.upload_data.file_name + "' />";
+                //  var txt3 = "<a id='al-' target='_blank' class='form-link-tb uploadData' href='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "'></a>";
+                 var txt4 = "<img id='img-"+acuanId+"' dataimg='"+data.upload_data.file_name+"' inisialjenis='Ijazah' onclick='popImage(this)' class='form-images-tb' src='" + baseUrl + 'repo/asesi/' + data.upload_data.file_name + "' alt='tera_byte'>";
+                 var txt5 = "<span id='span-' class='form-link-delete' title='Hapus Ijazah' datatb='"+data.upload_data.file_name+"' datajenis='ijazah' onclick='deleteImage(this)'><i class='fa fa-times'></i></span></div>";
+
+                $("#dijazah").append(txt0 + txt1 + txt2 + txt4 + txt5);
+                $('#myOverlay').hide();
+                $('#loadingGIF').hide();
+               }
+            },
+            error: function (request, status, error) {
+                alert(request.responseText);
+            }
+        });
+        return false;
+    });
+
     function deleteImage(d) {
       var getJenis  = d.getAttribute("datajenis");
       var getImg  = d.getAttribute("datatb");
@@ -407,6 +548,32 @@
       $("#formHeader").css("z-index","2");
       $(".img-content").remove();
       modal.style.display = "none";
+    }
+
+    function add_combo() {
+      var hasil = [];
+      $("input[name='file_data[]']").each(function () {
+        var fileName = $(this).val().split('/').pop().split('\\').pop();
+        //console.log(fileName);
+        hasil.push(fileName);
+      });
+      return hasil;
+    }
+
+    function create_combo() {
+      var bukti_sertifikat = "";
+      var bukti_s = "";
+      var data = add_combo();
+      $.each(data, function (key, value) {
+       bukti_sertifikat = bukti_sertifikat + "<option value='" + value + "'>" + value + "</option>";
+       bukti_s = bukti_s + "<option selected value='" + value + "'>" + value + "</option>";
+      })
+
+      //alert(bukti_sertifikat);
+      $(".select_bukti").text('');
+      $(".select_bukti").append("<select required name='pilih[]' class='form-control drop-pilih'>" + bukti_sertifikat + "</select>");
+      $("#div_bukti").append("<select multiple name='bukti_pendukung[]'>" + bukti_s + "</select>");
+      //$("#div_bukti").show();
     }
 
     NextBtn3 = $('.nextBtn3');

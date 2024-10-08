@@ -149,6 +149,7 @@ class Asesi extends MY_Controller {
         $row = $this->db->get()->row();
         return $row->biaya_skema;
     }
+
     function edit($id = false) {
         if (!$id) {
             data_not_found();
@@ -233,8 +234,10 @@ class Asesi extends MY_Controller {
                     $nama_asesor = $asesor->nama_user;
                 }
 
-                $asesi->bukti_pendukung = str_replace('"', '|', $asesi->bukti_pendukung);
-                $isbn = unserialize($asesi->isbn);
+                $asesi_bukti_pendukung = str_replace('"', '|', $asesi->bukti_pendukung);
+                // $isbn = unserialize($asesi->isbn);
+
+                // var_dump($asesi); die();
 
                 $this->load->model('skema_model');
                 //$skema = $this->skema_model->dropdown('id', 'skema');
@@ -243,11 +246,14 @@ class Asesi extends MY_Controller {
                 $this->db->where('pegawai_id', $id);
                 $this->db->where('jenis_user', '1');
                 $row = $this->db->get('t_users')->row();
+
                 if (count($row) > 0) {
                     $files_asesi = $this->asesi_model->files_asesi($row->id);
                 } else {
                     $files_asesi = array();
                 }
+
+                // var_dump($files_asesi); die();
 
                 $jadwal = $this->asesi_model->jadwal($asesi->jadwal_id);
                 $tuk = $this->asesi_model->nama_tuk($asesi->id_tuk);
@@ -865,21 +871,24 @@ class Asesi extends MY_Controller {
 
     function show_file() {
         $nmfile = $this->input->get('nmfile');
-        if(!file_exists('/var/www/_tera_byte/repo/asesi/'.$nmfile)){
-            $array_nmfile = explode('.',$nmfile);
-            $nmfile = str_replace('.'.end($array_nmfile),'_.'.end($array_nmfile),$nmfile);
-            if(!file_exists('/var/www/_tera_byte/repo/asesi/'.$nmfile)){
-                $array_nmfile = explode('-',$nmfile);
-                //var_dump($array_nmfile[0].'-'.$array_nmfile[1]);
-                $files = glob("/var/www/_tera_byte/repo/asesi/*".$array_nmfile[0].'-'.$array_nmfile[1]."*");
-                $array_nmfile = explode('/',$files[0]);
-                $nmfile = end($array_nmfile);
-                //var_dump($array_nmfile);
-            }
-            //var_dump(end($nmfile));
-        }
+        // if(!file_exists('/var/www/_tera_byte/repo/asesi/'.$nmfile)){
+        //     $array_nmfile = explode('.',$nmfile);
+        //     $nmfile = str_replace('.'.end($array_nmfile),'_.'.end($array_nmfile),$nmfile);
+        //     if(!file_exists('/var/www/_tera_byte/repo/asesi/'.$nmfile)){
+        //         $array_nmfile = explode('-',$nmfile);
+        //         //var_dump($array_nmfile[0].'-'.$array_nmfile[1]);
+        //         $files = glob("/var/www/_tera_byte/repo/asesi/*".$array_nmfile[0].'-'.$array_nmfile[1]."*");
+        //         $array_nmfile = explode('/',$files[0]);
+        //         $nmfile = end($array_nmfile);
+        //         //var_dump($array_nmfile);
+        //     }
+        //     //var_dump(end($nmfile));
+        // }
         $data['extension'] = strtolower(substr($nmfile, -3));
         $data['nmfile'] = $nmfile;
+
+        // var_dump($nmfile); die();
+
         $this->load->view('asesi/view_image', $data);
     }
 

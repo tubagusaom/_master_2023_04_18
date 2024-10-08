@@ -526,7 +526,7 @@ legend {
 	/* color: transparent; */
 	/* margin-bottom: 3px; */
 }
-.inner .form-row .form-holder input,
+/* .inner .form-row .form-holder input, */
 .inner .form-row .form-holder select {
     width: 100%;
     padding: 5px 0px 13px;
@@ -804,13 +804,14 @@ legend {
 	font-size: 14px;
     color: #666;
     font-weight: 600;
-    background: #fff url('../images/form-v1-icon.png') no-repeat scroll;
+    background: #fff url('../images/icon_row_down.png') no-repeat scroll;
     background-position: right 6px center;
     z-index: 1;
     cursor: pointer;
     position: relative;
     border:  2px solid #e5e5e5;
-    padding: 10.4px 13px;
+    /* padding: 10.4px 13px; */
+		padding: 5px 13px;
 }
 .inner .form-row .form-holder .input-border {
 	border:  2px solid #e5e5e5;

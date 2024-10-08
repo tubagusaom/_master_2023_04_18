@@ -8,11 +8,14 @@
     <div class="form-row">
       <div class="form-holder form-holder-2">
 
+        <!-- <input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1"> -->
+        <!-- <input type="radio" id="plan-1" class="radio" value="bk" class="value_bk"/><label class="plan-icon plan-1-label" style="width:15px;height: 15px;" for="plan-1"><img style="width: 10px;" src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-icon-2.png" alt="pay-1"></label> -->
+
         <div class="table-responsive" id="div_skema_yang_dipilih">
             <div id="div_inner"></div>
         </div>
 
-        <input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1">
+        <!-- <input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1">
         <label class="plan-icon plan-1-label" for="plan-1">
           <img src="<?=base_url()?>assets/_tera_byte/form/images/form-v1-icon-2.png" alt="pay-1">
         </label>
@@ -40,7 +43,7 @@
         <div class="plan-total">
           <span class="plan-title">Special Plan</span>
           <p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
-        </div>
+        </div> -->
 
         <div class="jarak-batas"></div>
 
@@ -60,7 +63,8 @@
                   <label class="label-next" style="cursor:pointer">Selesai dan Kirim</label>
                 </a> -->
 
-                <button type="submit" class="btn btn-warning btn-block">Selesai dan Kirim</button>
+                <!-- <button type="submit" class="btn btn-warning btn-block">Selesai dan Kirim</button> -->
+                <button class="btn btn-warning btn-block" type="button" id="selanjutnya-4">Selesai dan Kirim</button>
                 <!-- <button id="selanjutnya-2" type="button" >
                   <i class="fa fa-arrow-right"></i>
                   <label class="label-next">Selanjutnya</label>
@@ -69,10 +73,34 @@
             </div>
           </div>
         </div>
-        
+
       </div>
-      
+
 
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+  $("#selanjutnya-4").click(function () {
+    $('#step_langkah').val('5');
+    var valuess = $("select[name^='pilih']").map(function (idx, ele) {
+      $('#div_pilih').append('<input type="hidden" name="pilih_array[]" value="' + $(ele).val() + '" />');
+      //console.log($(ele).val());
+    }).get();
+
+    //var pilihid = $('.drop-pilih').val();
+    //console.log(pilihid);
+    //return false;
+    //preventDefault();
+    var cek_radio = $("input:radio[class='value_bk']").is(":checked");
+    if (cek_radio == true) {
+      alert("Semua Elemen Kompetensi atau KUK harus Kompeten");
+    } else { 
+      var tanya = confirm('Apakah Data yang anda isi sudah benar ?');
+      if (tanya) {
+        $('#formRegister').submit();
+      }
+   }
+  })
+</script>

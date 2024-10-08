@@ -1,4 +1,4 @@
-<?php 
+<?php
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
@@ -267,7 +267,6 @@ class Welcome extends MY_Controller
                    <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
                    <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
                    <td class="select_bukti">
-                    <select><option>Pilih</option></select>
                    </td>
                    </tr>';
                 } else {
@@ -279,7 +278,6 @@ class Welcome extends MY_Controller
                 <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
                 <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
                 <td class="select_bukti">
-                    <select><option>Pilih</option></select>
                 </td>
                 </tr>';
                 }
@@ -309,7 +307,6 @@ class Welcome extends MY_Controller
             <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']"  value="k" class="value_k"/> </td>
             <td align="center"> <input type="radio" required name="is_kompeten[][' . $key . ']" value="bk" class="value_bk"/></td>
             <td class="select_bukti">
-                <select><option>Pilih</option></select>
             </td>
             </tr>';
                 $no++;
@@ -341,9 +338,9 @@ class Welcome extends MY_Controller
         $this->load->helper('postinger');
         $this->load->library('upload');
 
-        $files = $_FILES['file'];
+        $files = $_FILES['file_data'];
         // $namafile = $nmdokumen . "-" . time() . "_" . $files['name'];
-        $namafile = $nmdokumen . "-" . time() . "-buktipendukung";
+        $namafile = $nmdokumen . "-buktipendukung-" . time();
         $fileupload = $this->upload_allfile('file', $namafile);
         echo $fileupload;
     }
@@ -387,10 +384,15 @@ class Welcome extends MY_Controller
         $asesi_detail = kode_lsp() . 'asesi_detail';
 
         $no_identitas = $this->input->post('no_identitas', true);
-        $nama_lengkap = $this->input->post('nama_lengkap', true);
-        $pilihan_bukti_pendukung = @serialize($_POST['pilih_array']);
-        $isbn = @serialize($_POST['isbn']);
-        $email = $this->input->post('email');
+
+        
+        $nama_depan = $this->input->post('first-name', true);
+        $nama_belakang = $this->input->post('last-name', true);
+
+        $nama_lengkap = $nama_depan . ' ' . $nama_belakang;
+        // $pilihan_bukti_pendukung = @serialize($_POST['pilih_array']);
+        // $isbn = @serialize($_POST['isbn']);
+        $email = $this->input->post('your_email');
         $skema_yang_dipilih = $this->input->post('skema_yang_dipilih', true);
 
         // Data Upload Bukti Pendukung
@@ -398,11 +400,14 @@ class Welcome extends MY_Controller
         $file_data = $this->input->post('file_data', true);
         // Nama Bukti Pendukung
         $nama_dokumen = $this->input->post('nama_dokumen', true);
-        $marketing = $this->input->post('marketing');
+        // $marketing = $this->input->post('marketing');
+
 
         foreach ($nama_dokumen as $key => $value) {
             $array_bukti[$value] = $file_data[$key];
         }
+
+        $pilihan_bukti_pendukung = @serialize($_POST['pilih']);
 
         // Extract Files POST
         // foreach ($nama_dokumen as $key => $nmdokumen) {
@@ -444,7 +449,7 @@ class Welcome extends MY_Controller
             $this->Pesan_Model->insert($datax);
 
             $admin = $this->db->get('r_konfigurasi_aplikasi')->row();
-            smssend($admin->sms_center, $datax['message']);
+            // smssend($admin->sms_center, $datax['message']);
             die();
         }
 
@@ -456,8 +461,8 @@ class Welcome extends MY_Controller
         $kewarganegaraan = $this->input->post('kewarganegaraan', true);
         $alamat = $this->input->post('alamat', true);
         $no_telp = $this->input->post('no_telp', true);
-        $email = $this->input->post('email', true);
-        // $pend_terakhir = $this->input->post('pend_terakhir', true);
+        // $email = $this->input->post('email', true);
+        $pend_terakhir = $this->input->post('pend_terakhir', true);
         $perg_tinggi = $this->input->post('perg_tinggi', true);
         $jurusan = $this->input->post('jurusan', true);
         // $jabatan = $this->input->post('jabatan', true);
@@ -476,7 +481,7 @@ class Welcome extends MY_Controller
         $jadwal_id = $this->input->post('jadwal_id', true);
         $id_tuk = $this->input->post('id_tuk', true);
         $id_pekerjaan = $this->input->post('id_pekerjaan', true);
-        $id_genre = $this->input->post('id_genre', true);
+        // $id_genre = $this->input->post('id_genre', true);
 
         $id_sumber_anggaran = $this->input->post('id_sumber_anggaran', true);
         $id_instansi_anggaran = $this->input->post('id_instansi_anggaran', true);
@@ -487,7 +492,9 @@ class Welcome extends MY_Controller
         $folder = $this->input->post('folder', true);
         $id_provinsi = $this->input->post('id_provinsi');
         $kode_random = rand(1, 1000000);
-        //var_dump($is_kompeten);die();
+
+        // var_dump($is_kompeten);die();
+
         $data = array(
             'id_tuk' => $id_tuk,
             'jadwal_id' => $jadwal_id,
@@ -509,27 +516,34 @@ class Welcome extends MY_Controller
             'skema_sertifikasi' => $skema_yang_dipilih,
             'kode_random' => $kode_random,
             'pilihan_bukti_pendukung' => $pilihan_bukti_pendukung,
-            'isbn' => $isbn,
+            // 'isbn' => $isbn,
             'organisasi' => $organisasi,
             'bukti_pendukung' => json_encode($array_bukti), //$bukti_pendukung
-            'marketing' => $marketing,
+            // 'marketing' => $marketing,
             'is_perpanjangan' => $asesmen,
             'id_provinsi' => $provinsi,
             'id_kabupaten' => $kabupaten,
             'id_pekerjaan'  => $id_pekerjaan,
-            'id_genre'  => $id_genre,
+            // 'id_genre'  => $id_genre,
 
             'id_sumber_anggaran'    => $id_sumber_anggaran,
             'id_instansi_anggaran'  => $id_instansi_anggaran,
         );
+
+        
+
         $bukti = unserialize($pilihan_bukti_pendukung);
-        $isbn_buku = unserialize($isbn);
+        // $isbn_buku = unserialize($isbn);
         // var_dump($data); die();
+
         if ($this->db->insert($asesi, $data)) {
             $id = $this->db->insert_id();
             //$this->send_email($kode_random,$email,$id,$nama_lengkap);
             $this->load->model('asesi_model');
             $detail_elemen_kuk = $this->asesi_model->detail_elemen_kuk($skema_yang_dipilih);
+
+            // var_dump($id); die();
+
             foreach ($detail_elemen_kuk as $key => $value) {
                 $data_detail = array(
                     'asesi_id' => $id,
@@ -600,12 +614,7 @@ class Welcome extends MY_Controller
                 'foto' => '1',
                 'ktp' => '1',
                 'cv' => '1',
-                'ijazah' => '1',
-                'skk' => '1',
-                'sertifikat' => '1',
-                'cover_1' => '5',
-                'cover_2' => '5',
-                'cover_3' => '5',
+                'ijazah' => '1'
             );
             foreach ($nama_dokumen as $key => $value) {
                 $array_repositori = array(

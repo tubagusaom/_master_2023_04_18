@@ -126,29 +126,16 @@
 
             <div id="tips">
                 <ol class="rounded-list">
-                    <li><a href="javascript: void(0)">Kode ISBN Buku</a></li>
-                </ol>
-            </div>
-            <div style="margin-left: 25px;">
-            <?php
-            
-            foreach ($isbn as $key => $item) {
-                echo 'ISBN: ' . $item . '<br />';
-            }
-            ?>
-            </div>
-            <div id="tips">
-                <ol class="rounded-list">
-                    <li><a href="javascript: void(0)">Biodata Peserta/APL 01</a></li>
+                    <li><a href="javascript: void(0)">Biodata Peserta / APL 01</a></li>
                 </ol>
             </div>
             <table class="table-data">
-                <tr>
+                <!-- <tr>
                     <td style="width: 150px;">Pendaftar: </td>
                     <td>
                         <?=form_dropdown('marketing',$pendaftar,$data->marketing)?>
                     </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td style="width: 150px;">No Identitas: </td>
                     <td>

@@ -78,7 +78,7 @@
         <div class="form-holder form-holder-2">
           <fieldset>
             <legend>Phone Number <b class="harus_diisi">*</b></legend>
-            <input type="text" class="form-control effect-col-12" id="phone" name="phone" placeholder="+1 888-999-7777" required>
+            <input type="text" class="form-control effect-col-12" id="phone" name="no_telp" placeholder="+1 888-999-7777" required>
             <span class="focus-border"></span>
           </fieldset>
         </div>
